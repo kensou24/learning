@@ -8,7 +8,7 @@
 - 首先求出memcached服务器（节点）的哈希值，并将其配置到0～232的圆（continuum）上。
 - 然后采用同样的方法求出存储数据的键的哈希值，并映射到相同的圆上。
 - 然后从数据映射到的位置开始顺时针查找，将数据保存到找到的第一个服务器上。如果超过232仍然找不到服务器，就会保存到第一台memcached服务器上。
-![](https://github.com/kensou24/learning/blob/master/photos/1.png?raw=true)
+![](https://github.com/kensou24/learning/blob/master/photos/1.png?raw=true){:height="10px" width="40px"}
 
 　　从上图的状态中添加一台memcached服务器。余数分布式算法由于保存键的服务器会发生巨大变化而影响缓存的命中率，但Consistent Hashing中，只有在园（continuum）上增加服务器的地点逆时针方向的第一台服务器上的键会受到影响，如下图所示：
 ![](https://github.com/kensou24/learning/blob/master/photos/2.png?raw=true)
